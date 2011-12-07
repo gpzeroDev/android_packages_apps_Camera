@@ -768,8 +768,6 @@ public class VideoCamera extends BaseCamera
             closeCamera();
             throw new RuntimeException("startPreview failed", ex);
         }
-
-        mCameraDevice.autoFocus(null);
     }
 
     private void closeCamera() {
@@ -1332,7 +1330,6 @@ public class VideoCamera extends BaseCamera
             return;
         }
 
-        mCameraDevice.autoFocus(null);
         initializeRecorder();
         if (mMediaRecorder == null) {
             Log.e(TAG, "Fail to initialize media recorder");

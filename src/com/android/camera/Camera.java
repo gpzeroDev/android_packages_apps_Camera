@@ -118,7 +118,7 @@ public class Camera extends BaseCamera implements View.OnClickListener,
     // The reason why it is set to 0.7 is just because 1.0 is too bright.
     private static final float DEFAULT_CAMERA_BRIGHTNESS = 0.7f;
 
-    private static final int SCREEN_DELAY = 1000;
+    private static final int SCREEN_DELAY = 2 * 60 * 1000;
     private static final int FOCUS_BEEP_VOLUME = 100;
 
     private static final int ZOOM_STOPPED = 0;
@@ -1033,9 +1033,8 @@ public class Camera extends BaseCamera implements View.OnClickListener,
         // If scene mode is set, we cannot set flash mode, white balance, and
         // focus mode, instead, we read it from driver
         if (!Parameters.SCENE_MODE_AUTO.equals(mSceneMode)) {
-            overrideHudSettings(getString(R.string.pref_camera_flashmode_default),
-                                getString(R.string.pref_camera_whitebalance_default),
-                                getString(R.string.pref_camera_focusmode_default));
+            overrideHudSettings(mParameters.getFlashMode(),
+                    mParameters.getWhiteBalance(), mParameters.getFocusMode());
         } else {
             overrideHudSettings(null, null, null);
         }
